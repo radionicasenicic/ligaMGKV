@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Матрурантска лига</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Резултати Матрурантска лига</h1>
+
+    <h2>Резултати по колима</h2>
+    <div id="results"></div>
+
+    <h2>Табела поена</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Тим</th>
+                <th>Поени</th>
+            </tr>
+        </thead>
+        <tbody id="rankingTable"></tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
