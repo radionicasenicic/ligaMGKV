@@ -4,37 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Матурантска лига</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Резултати Матурантска лига</h1>
+    <!-- Header section -->
+    <header>
+        <div class="container">
+            <h1>Матурантска лига</h1>
+        </div>
+    </header>
 
-    <h2>Резултати по колима</h2>
-    <div id="results"></div>
+    <!-- Main content -->
+    <div class="container">
+        <section id="content">
+            <h2>Резултати по колима</h2>
+            <div id="results"></div>
 
-    <h2>Табела поена</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Тим</th>
-                <th>Поени</th>
-            </tr>
-        </thead>
-        <tbody id="rankingTable"></tbody>
-    </table>
+            <h2>Табела поена</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Тим</th>
+                        <th>Поени</th>
+                    </tr>
+                </thead>
+                <tbody id="rankingTable"></tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2024 Матурантска лига. Сва права задржана.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

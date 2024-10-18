@@ -5,9 +5,8 @@ const teams = [
 
 const results = [
     // Results format: [Team 1, Team 2, Score 1, Score 2]
-    [["Четврто 1", "Четврто 2", 21, 12], ["Четврто 8", "Четврто 7-9", -1, -1], ["Четврто 5-6", "Четврто 4", 27, 4], ["Четврто 3", "Професори", 14, 8]],
-   //[["Четврто 1", "Четврто 3", 4, 2], ["Четврто 2", "Четврто 4", 1, 1], ["Четврто 5-6", "Четврто 7-9", 2, 3], ["Четврто 8", "Професори", 1, 4]],
-    // Add other round results here for the 7 rounds...
+    [["Четврто 1", "Четврто 2", 21, 12], ["Четврто 8", "Четврто 7-9", undefined, undefined], ["Четврто 5-6", "Четврто 4", 27, 4], ["Четврто 3", "Професори", 14, 8]],
+    // Other rounds...
 ];
 
 const points = {};
@@ -21,6 +20,13 @@ teams.forEach(team => {
 results.forEach(round => {
     round.forEach(match => {
         const [team1, team2, score1, score2] = match;
+
+        // Check if scores are undefined (i.e., waiting for the result)
+        if (score1 === undefined || score2 === undefined) {
+            // No points are assigned in this case
+            return;
+        }
+
         if (score1 > score2) {
             points[team1] += 3;
         } else if (score2 > score1) {
@@ -53,10 +59,17 @@ results.forEach((round, index) => {
     round.forEach(match => {
         const [team1, team2, score1, score2] = match;
         const row = document.createElement("tr");
+
+        // If score is undefined, show "Чека се резултат"
+        let resultDisplay = `${score1} - ${score2}`;
+        if (score1 === undefined || score2 === undefined) {
+            resultDisplay = "Чека се резултат";
+        }
+
         row.innerHTML = `
             <td>${team1}</td>
             <td>${team2}</td>
-            <td>${score1} - ${score2}</td>
+            <td>${resultDisplay}</td>
         `;
         tbody.appendChild(row);
     });
