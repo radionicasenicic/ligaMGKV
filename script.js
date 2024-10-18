@@ -6,34 +6,43 @@ const teams = [
 const results = [
     // Results format: [Team 1, Team 2, Score 1, Score 2]
     [["Четврто 1", "Четврто 2", 21, 12], ["Четврто 8", "Четврто 7-9", undefined, undefined], ["Четврто 5-6", "Четврто 4", 27, 4], ["Четврто 3", "Професори", 14, 8]],
-    // Other rounds...
+    //[["Четврто 1", "Четврто 3", 15, 15], ["Четврто 2", "Четврто 5-6", 18, 10], ["Четврто 4", "Професори", 22, 11], ["Четврто 7-9", "Четврто 8", 30, 25]],
+    // Add more rounds if needed...
 ];
 
 const points = {};
+const goals = {};
 
-// Initialize teams points
+// Initialize teams points and goals
 teams.forEach(team => {
     points[team] = 0;
+    goals[team] = { scored: 0, conceded: 0 };
 });
 
-// Calculate points from results
+// Calculate points and goals from results
 results.forEach(round => {
     round.forEach(match => {
         const [team1, team2, score1, score2] = match;
 
         // Check if scores are undefined (i.e., waiting for the result)
         if (score1 === undefined || score2 === undefined) {
-            // No points are assigned in this case
-            return;
+            return; // No points are assigned in this case
         }
 
+        // Update goals scored and conceded
+        goals[team1].scored += score1;
+        goals[team1].conceded += score2;
+        goals[team2].scored += score2;
+        goals[team2].conceded += score1;
+
+        // Calculate points
         if (score1 > score2) {
-            points[team1] += 3;
+            points[team1] += 3; // Team 1 wins
         } else if (score2 > score1) {
-            points[team2] += 3;
+            points[team2] += 3; // Team 2 wins
         } else {
-            points[team1] += 1;
-            points[team2] += 1;
+            points[team1] += 1; // Draw
+            points[team2] += 1; // Draw
         }
     });
 });
@@ -81,13 +90,28 @@ results.forEach((round, index) => {
 
 // Display ranking table
 const rankingTable = document.getElementById("rankingTable");
-const sortedTeams = Object.keys(points).sort((a, b) => points[b] - points[a]);
+const sortedTeams = Object.keys(points).sort((a, b) => {
+    // Sort by points
+    if (points[b] !== points[a]) {
+        return points[b] - points[a];
+    }
+    // Calculate goal difference
+    const goalDifferenceA = goals[a].scored - goals[a].conceded;
+    const goalDifferenceB = goals[b].scored - goals[b].conceded;
+    if (goalDifferenceB !== goalDifferenceA) {
+        return goalDifferenceB - goalDifferenceA; // Sort by goal difference
+    }
+    // Sort by goals scored if goal difference is the same
+    return goals[b].scored - goals[a].scored;
+});
 
 sortedTeams.forEach(team => {
     const row = document.createElement("tr");
+    const goalDifference = goals[team].scored - goals[team].conceded; // Calculate goal difference
     row.innerHTML = `
         <td>${team}</td>
         <td>${points[team]}</td>
+        <td>${goalDifference}</td> <!-- Display goal difference -->
     `;
     rankingTable.appendChild(row);
 });
