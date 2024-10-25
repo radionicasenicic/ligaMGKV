@@ -11,6 +11,7 @@ const results = [
     [["Четврто 5-6", "Четврто 7-9",undefined,undefined], ["Четврто 3", "Четврто 2",undefined,undefined ], ["Четврто 4", "Четврто 1", undefined, undefined], ["Професори", "Четврто 8", undefined, undefined]],
     [["Четврто 8", "Четврто 5-6",undefined,undefined], ["Четврто 1", "Професори",undefined,undefined ], ["Четврто 2", "Четврто 4", undefined, undefined], ["Четврто 7-9", "Четврто 3", undefined, undefined]],
     [["Четврто 5-6", "Четврто 3",undefined,undefined], ["Четврто 4", "Четврто 7-9",undefined,undefined ], ["Професори", "Четврто 2", undefined, undefined], ["Четврто 8", "Четврто 1", undefined, undefined]],
+    [["Четврто 1", "Четврто 5-6",undefined,undefined], ["Четврто 2", "Четврто 8",undefined,undefined ], ["Четврто 7-9", "Професори", undefined, undefined], ["Четврто 3", "Четврто 4", undefined, undefined]],
     
     // Add more rounds if needed...
 ];
